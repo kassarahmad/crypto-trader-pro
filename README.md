@@ -1,105 +1,45 @@
----
-
 # 🚀 Crypto Trader Pro
-### AI-Assisted, Risk-Controlled Trading Backend
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10+-blue?logo=python"/>
-  <img src="https://img.shields.io/badge/FastAPI-Backend-green?logo=fastapi"/>
-  <img src="https://img.shields.io/badge/OpenAI-AI%20Advisor-black?logo=openai"/>
-  <img src="https://img.shields.io/badge/OS-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey?logo=linux"/>
-  <img src="https://img.shields.io/badge/License-Educational-orange"/>
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?logo=python">
+  <img src="https://img.shields.io/badge/FastAPI-Backend-green?logo=fastapi">
+  <img src="https://img.shields.io/badge/Uvicorn-ASGI-orange?logo=uvicorn">
+  <img src="https://img.shields.io/badge/OpenAI-AI%20Advisor-black?logo=openai">
+  <img src="https://img.shields.io/badge/REST-API-lightgrey?logo=swagger">
 </p>
 
----
+**Crypto Trader Pro** is a modular backend dashboard for algorithmic & AI-assisted trading.  
+It focuses on **risk management**, **manual control**, and **AI suggestions (never auto-trading)**.
 
-## 👨‍💻 Author
-
-**Created, designed and engineered by Ahmad Kassar**  
-Computer Science student – Software Engineering focus
-
-This project demonstrates:
-- Backend system architecture
-- Safe automation principles
-- AI integration with human control
-- Real-world risk management logic
+> Educational & experimental project  
+> Created by **Ahmad Kassar**
 
 ---
 
-## 📌 What Is Crypto Trader Pro?
+## ✨ Features
 
-Crypto Trader Pro is a **professional trading backend framework**, not a “click and profit” bot.
-
-It is built to:
-- Observe live markets
-- Track exposure and PnL
-- Enforce strict risk rules
-- Allow AI to **suggest**, not execute
-- Require **explicit human approval**
-
-It can be used for:
-- Learning backend engineering
-- Studying algorithmic trading systems
-- Simulations & paper trading
-- Research and experimentation
-- Extending into real trading systems
+- 📊 Web dashboard (FastAPI)
+- 🛑 Kill-switch (emergency stop)
+- ⚖️ Risk profiles (Conservative / Balanced / Aggressive)
+- 📉 Global & per-market take-profit
+- 🔁 Trailing stop logic
+- 🤖 AI trade advisor (optional, read-only)
+- 💾 Persistent strategy state
+- 🔐 Secure environment-based configuration
 
 ---
 
-## 🧠 Core Philosophy
+## 📦 Requirements
 
-> **Automation must be controlled**  
-> **AI must advise, not decide**  
-> **Risk overrides everything**
-
----
-
-## 🧩 Technologies Used
-
-| Category | Technology |
-|-------|-----------|
-| Language | 🐍 Python |
-| Web API | ⚡ FastAPI |
-| Server | 🦄 Uvicorn |
-| AI | 🧠 OpenAI API (optional) |
-| Data | 📄 JSON (persistent state) |
-| Frontend | 🌐 HTML + CSS + JS |
-| OS Support | 🖥️ Windows / Linux / macOS |
-| Security | 🔐 Environment variables |
-
----
-
-## 📂 Project Structure
-
-crypto-trader-pro/ │ ├── main.py                  # FastAPI entry point ├── config.py                # Environment configuration ├── logger_setup.py          # Logging │ ├── polymarket_client.py     # Market interface (replaceable) │ ├── risk.py                  # Risk checks ├── risk_profiles.py         # Conservative / Balanced / Aggressive ├── kill_switch.py           # Emergency stop system │ ├── strategy_state.py        # Persistent strategy state │ ├── ai_advisor.py            # AI logic (optional) ├── ai_buffer.py             # Last AI advice ├── ai_history.py            # AI advice history │ ├── requirements.txt         # Python dependencies ├── README.md                # This file └── env.sh                   # Environment variables
-
----
-
-## 🖥️ Supported Operating Systems
-
-✅ Windows 10 / 11  
-✅ Linux (Ubuntu, Debian, Arch, etc.)  
-✅ macOS (Intel & Apple Silicon)  
-✅ WSL  
-✅ Cloud servers / VPS  
-
----
-
-## 🔧 Requirements
-
-### Mandatory
 - Python **3.10 or newer**
-- Internet connection
-- Terminal / Shell
-
-### Optional
-- OpenAI API key (only for AI features)
+- Git
+- Internet connection (for APIs)
 
 ---
 
-## 🛠️ Installation – From Zero (ALL OS)
+## 🛠️ Setup (From Zero)
 
-### 1️⃣ Clone the Repository
+### 1️⃣ Clone the repository
 ```bash
 git clone https://github.com/YOUR_USERNAME/crypto-trader-pro.git
 cd crypto-trader-pro
@@ -107,7 +47,7 @@ cd crypto-trader-pro
 
 ---
 
-2️⃣ Create Virtual Environment
+2️⃣ Create & activate virtual environment
 
 Linux / macOS
 
@@ -122,52 +62,37 @@ python -m venv venv
 
 ---
 
-3️⃣ Install Dependencies
+3️⃣ Install dependencies
 
 pip install -r requirements.txt
 
 
 ---
 
-🔐 Environment Configuration (IMPORTANT)
+🔐 Environment Configuration
 
-The project only uses environment variables.
-No secrets are hard-coded.
+The project uses environment variables only (no secrets in code).
 
-Create env.sh
+Example variables
 
-#!/usr/bin/env bash
+# Server
+API_HOST=127.0.0.1
+API_PORT=8000
 
-# ===============================
-# Crypto Trader Pro Environment
-# ===============================
+# Security
+EXEC_PIN=1234
 
-# --- SERVER ---
-export API_HOST="127.0.0.1"
-export API_PORT="8000"
+# Risk limits
+MAX_DAILY_LOSS_USDC=50
+MAX_EXPOSURE_USDC=200
 
-# --- SECURITY ---
-export EXEC_PIN="1234"
-export LOG_LEVEL="INFO"
+# AI (optional)
+OPENAI_API_KEY=your_openai_api_key
+OPENAI_MODEL=gpt-4.1-mini
 
-# --- RISK LIMITS ---
-export MAX_DAILY_LOSS_USDC="50"
-export MAX_EXPOSURE_USDC="200"
+Load variables
 
-# --- AI (OPTIONAL) ---
-export OPENAI_API_KEY="sk-REPLACE_WITH_YOUR_KEY"
-export OPENAI_MODEL="gpt-4.1-mini"
-
-# --- FILE STORAGE ---
-export STATE_FILE="strategy_state.json"
-export AI_HISTORY_FILE="ai_history.json"
-export KILL_SWITCH_FILE="kill_switch.json"
-
-echo "Environment loaded"
-
-Load Environment
-
-Linux / macOS / WSL
+Linux / macOS
 
 source env.sh
 
@@ -175,12 +100,11 @@ Windows (PowerShell)
 
 $env:EXEC_PIN="1234"
 $env:MAX_DAILY_LOSS_USDC="50"
-$env:MAX_EXPOSURE_USDC="200"
 
 
 ---
 
-▶️ Running the Project
+▶️ Run the Dashboard
 
 uvicorn main:app --host 127.0.0.1 --port 8000
 
@@ -191,62 +115,103 @@ http://127.0.0.1:8000
 
 ---
 
-🖥️ Web Dashboard Features
+🖥️ Dashboard Overview
 
-📊 Live system state
+🔹 Live State
 
-🔴 Kill-switch (manual & automatic)
+Total PnL
 
-⚖️ Risk profile selection
+Exposure
 
-📈 Trailing stop & take-profit
+Active risk profile
 
-🧠 AI advice (optional)
+Kill-switch status
 
-🔐 PIN-protected execution
+
+🔹 Risk Profiles
+
+Conservative
+
+Balanced
+
+Aggressive
+(affects size & exposure limits)
+
+
+🔹 Protection Controls
+
+Global take-profit
+
+Trailing stop
+
+Per-market take-profit
+
+
+🔹 AI Advisor (Optional)
+
+Insert token_id
+
+Optional market/news context
+
+AI returns suggestion only
+
+Manual confirmation required with PIN
+
+
+🔹 Positions
+
+View current positions
+
+PnL & exposure per market
 
 
 
 ---
 
-🤖 AI Advisor – How It Works
+🤖 AI Usage Example
 
-AI receives structured JSON
-
-AI outputs structured JSON
-
-AI never executes trades directly
-
-If pricing data is missing → AI returns HOLD
+1. Insert token_id in AI section
 
 
-Example output:
+2. Click “Ask AI”
 
-{
-  "summary": "No reliable pricing, hold",
-  "bot_trade_input": {
-    "side": "hold",
-    "price": null,
-    "size": 0
-  }
-}
 
-This behavior is intentional and safe.
+3. Review suggestion:
+
+side (buy / sell / hold)
+
+price
+
+size
+
+
+
+4. Enter PIN
+
+
+5. Click “Execute AI Advice”
+
+
+
+⚠️ AI never trades automatically
+⚠️ If pricing data is missing → AI will return HOLD
 
 
 ---
 
-🔒 Safety Rules (Hard-Coded)
+🧠 How It Works (In Short)
 
-Kill-switch overrides everything
+FastAPI serves the dashboard
 
-Risk limits override AI
+Strategy state is saved on disk
 
-No auto-loops
+Risk checks run before every trade
 
-No blind execution
+Kill-switch blocks everything instantly
 
-Human confirmation required
+AI is advisory-only
+
+Manual control is always required
 
 
 
@@ -256,39 +221,21 @@ Human confirmation required
 
 This project is:
 
-Educational
+❌ NOT financial advice
 
-Experimental
+❌ NOT an auto-trading bot
 
-Research-oriented
-
-
-It is NOT financial advice.
-You are fully responsible for any use.
+✅ Educational & experimental
 
 
----
-
-🏁 Final Notes
-
-Crypto Trader Pro is not a toy.
-It is a serious backend system, designed with discipline and control.
-
-Use it to:
-
-Learn
-
-Extend
-
-Research
-
-Build something better
-
+You are fully responsible for how you use it.
 
 
 ---
 
-© Ahmad Kassar – All rights reserved
+👨‍💻 Author
 
----
+Ahmad Kassar
+Computer Science / Software Engineering
+Built with clarity, safety, and discipline
 
